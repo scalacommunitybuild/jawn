@@ -48,7 +48,7 @@ abstract class Parser[J] {
   /**
    * Read the bytes/chars from 'i' until 'j' as a String.
    */
-  protected[this] def at(i: Int, j: Int): String
+  protected[this] def at(i: Int, j: Int): CharSequence
 
   /**
    * Return true iff 'i' is at or beyond the end of the input (EOF).
@@ -287,7 +287,7 @@ abstract class Parser[J] {
    * NOTE: This is only capable of generating characters from the basic plane.
    * This is why it can only return Char instead of Int.
    */
-  protected[this] final def descape(s: String): Char = {
+  protected[this] final def descape(s: CharSequence): Char = {
     val hc = HexChars
     var i = 0
     var x = 0
