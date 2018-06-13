@@ -2,13 +2,13 @@ import ReleaseTransformations._
 
 lazy val jawnSettings = Seq(
   organization := "org.spire-math",
-  scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0"),
+  scalaVersion := "2.12.6",
+  crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.6"),
 
   resolvers += Resolver.sonatypeRepo("releases"),
   libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "3.0.0" % "test",
-    "org.scalacheck" %% "scalacheck" % "1.13.4" % "test"
+    "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+    "org.scalacheck" %% "scalacheck" % "1.14.0" % "test"
   ),
   scalacOptions ++= Seq(
     //"-Yinline-warnings",
@@ -97,21 +97,21 @@ def support(s: String) =
     .disablePlugins(JmhPlugin)
 
 lazy val supportArgonaut = support("argonaut")
-  .settings(crossScalaVersions := Seq("2.10.6", "2.11.8"))
+  .settings(crossScalaVersions := Seq("2.10.7", "2.11.12"))
   .settings(libraryDependencies += "io.argonaut" %% "argonaut" % "6.1")
 
 lazy val supportJson4s = support("json4s")
   .settings(libraryDependencies += "org.json4s" %% "json4s-ast" % "3.5.0")
 
 lazy val supportPlay = support("play")
-  .settings(crossScalaVersions := Seq("2.10.6", "2.11.8"))
+  .settings(crossScalaVersions := Seq("2.10.7", "2.11.12"))
   .settings(libraryDependencies += (scalaBinaryVersion.value match {
     case "2.10" => "com.typesafe.play" %% "play-json" % "2.4.8"
     case _ =>  "com.typesafe.play" %% "play-json" % "2.5.9"
   }))
 
 lazy val supportRojoma = support("rojoma")
-  .settings(crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0"))
+  .settings(crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.6"))
   .settings(libraryDependencies += "com.rojoma" %% "rojoma-json" % "2.4.3")
 
 lazy val supportRojomaV3 = support("rojoma-v3")
@@ -125,9 +125,9 @@ lazy val benchmark = project.in(file("benchmark"))
   .dependsOn(all.map(Project.classpathDependency[Project]): _*)
   .settings(name := "jawn-benchmark")
   .settings(jawnSettings: _*)
-  .settings(scalaVersion := "2.11.8")
+  .settings(scalaVersion := "2.11.12")
   .settings(noPublish: _*)
-  .settings(crossScalaVersions := Seq("2.11.8"))
+  .settings(crossScalaVersions := Seq("2.11.12"))
   .enablePlugins(JmhPlugin)
 
 lazy val all =
